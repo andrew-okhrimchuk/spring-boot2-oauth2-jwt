@@ -13,7 +13,7 @@ import java.security.Principal;
 public class UserController {
 
     @GetMapping
-    @PreAuthorize("hasRole('ROLE_STUDENT')")
+    @PreAuthorize("hasRole('ROLE_ADMIN') || hasRole('ROLE_STUDENT')")
     public ResponseEntity<Principal> get(final Principal principal) {
         return ResponseEntity.ok(principal);
     }

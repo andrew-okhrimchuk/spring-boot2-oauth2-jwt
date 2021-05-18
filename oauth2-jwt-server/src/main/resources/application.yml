@@ -21,3 +21,10 @@ spring:
   jpa:
     hibernate:
       ddl-auto: none
+
+logging:
+  level:
+    root: ERROR
+    org.springframework.web: debug
+    oauth2-jwt-server: DEBUG
+    org.hibernate: ERROR
