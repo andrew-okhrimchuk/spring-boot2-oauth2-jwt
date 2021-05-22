@@ -11,3 +11,4 @@ public class ResourceServerJwtApplication {
         SpringApplication.run(ResourceServerJwtApplication.class, args);
     }
 }
+// top.okhrimchuk.decompose

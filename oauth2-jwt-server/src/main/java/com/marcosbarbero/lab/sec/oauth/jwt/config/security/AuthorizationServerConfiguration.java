@@ -4,6 +4,7 @@ import com.marcosbarbero.lab.sec.oauth.jwt.config.props.SecurityProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -21,6 +22,8 @@ import org.springframework.security.oauth2.provider.token.store.KeyStoreKeyFacto
 
 import javax.sql.DataSource;
 import java.security.KeyPair;
+
+import static com.marcosbarbero.lab.sec.oauth.jwt.constants.MicroServiceConstants.LOGIN_MICROSERVICE;
 
 @Configuration
 @EnableAuthorizationServer
@@ -83,10 +86,12 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 
     @Override
     public void configure(final AuthorizationServerEndpointsConfigurer endpoints) {
-        endpoints.authenticationManager(this.authenticationManager)
+        endpoints
+                .authenticationManager(this.authenticationManager)
                 .accessTokenConverter(jwtAccessTokenConverter())
                 .userDetailsService(this.userDetailsService)
-                .tokenStore(tokenStore());
+                .tokenStore(tokenStore())
+                .allowedTokenEndpointRequestMethods(HttpMethod.GET, HttpMethod.POST, HttpMethod.OPTIONS, HttpMethod.DELETE);
     }
 
     @Override

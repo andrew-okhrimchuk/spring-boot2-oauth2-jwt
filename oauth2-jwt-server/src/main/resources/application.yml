@@ -1,12 +1,14 @@
 server:
   port: 9001
 
+
 security:
   jwt:
     key-store: classpath:keystore.jks
     key-store-password: letmein
     key-pair-alias: mytestkey
     key-pair-password: changeme
+
 
 spring:
   jackson:
@@ -22,9 +24,27 @@ spring:
     hibernate:
       ddl-auto: none
 
+
 logging:
   level:
     root: ERROR
     org.springframework.web: debug
     oauth2-jwt-server: DEBUG
     org.hibernate: ERROR
+
+app:
+  client:
+    id: clientId
+    secret: secret
+
+host:
+  full:
+    dns:
+      auth:
+        link: //localhost:9001
+auth:
+  server:
+    schem: http
+
+
+

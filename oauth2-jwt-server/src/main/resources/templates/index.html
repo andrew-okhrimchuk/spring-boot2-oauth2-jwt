@@ -1,0 +1,29 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="RU">
+<head>
+    <meta charset="UTF-8">
+    <title>Report</title>
+    <style>
+        body {background-color: rgba(133, 191, 211, 0.07) }
+        h2   {color:blue}
+        h5   {color: #9b16ff
+        }
+        p    {color:green}
+        b    {display: inline-block;}
+        .xx0 {padding-top: 10px}
+
+    </style>
+
+</head>
+<body>
+
+<h2>Main page <H5>(Сводная страница)</H5></h2>
+<button ><a th:href="@{/students/paginated}"}>List of students</a></button>
+<button ><a th:href="@{https://localhost:9001/swagger-ui.index.html}"}>API Users</a></button>
+<button ><a th:href="@{https://localhost:9002/swagger-ui.index.html}"}>API Students</a></button>
+
+<div class="xx0">
+</div>
+
+</body>
+</html>
+

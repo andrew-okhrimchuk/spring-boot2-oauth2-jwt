@@ -2,7 +2,6 @@ package com.marcosbarbero.lab.sec.oauth.jwt.service;
 
 import com.marcosbarbero.lab.sec.oauth.jwt.domain.UserDTO;
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
