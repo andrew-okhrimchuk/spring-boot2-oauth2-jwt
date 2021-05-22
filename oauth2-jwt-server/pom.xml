@@ -4,27 +4,23 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <parent>
-        <groupId>com.marcosbarbero.lab</groupId>
+        <groupId>top.okhrimchuk.decompose</groupId>
         <artifactId>spring-boot2-oauth2-jwt</artifactId>
         <version>0.0.1-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
-
     <modelVersion>4.0.0</modelVersion>
-
     <artifactId>oauth2-jwt-server</artifactId>
     <description>
         <![CDATA[
             Playground project for OAuth2 + JWT using Spring Security
         ]]>
     </description>
-
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jdbc</artifactId>
         </dependency>
-
          <dependency>
              <groupId>org.springframework.cloud</groupId>
              <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>

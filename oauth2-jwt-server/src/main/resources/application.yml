@@ -28,8 +28,8 @@ spring:
 logging:
   level:
     root: ERROR
-    org.springframework.web: debug
-    oauth2-jwt-server: DEBUG
+    org.springframework.web: info
+    oauth2-jwt-server: info
     org.hibernate: ERROR
 
 app:
