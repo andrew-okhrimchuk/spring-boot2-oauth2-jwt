@@ -39,7 +39,6 @@ public class JPAConfig {
 
     @Autowired
     private Environment env;
-    private static final String packageSkan = "top.okhrimchuk.decompose";
 
     @Bean
     public JdbcTemplate jdbcTemplate(DataSource dataSource) {
@@ -130,7 +129,7 @@ public class JPAConfig {
 
         LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
         factory.setJpaVendorAdapter(vendorAdapter);
-        factory.setPackagesToScan(packageSkan);
+        factory.setPackagesToScan(env.getProperty("packageSkan"));
         factory.setDataSource(dataSource);
         factory.afterPropertiesSet();
 
