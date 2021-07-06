@@ -11,12 +11,12 @@ c разными правами доступа к ресурсам, соглас
   - oauth2-jwt-server
   - oauth2-jwt-resource
   
- 2. Для получения токина используйте логин и пароль: (**use Username=clientId and Password=secret**):
- 
- ![](docs/img/Example.bmp)
+ 2. Для получения токина используйте логин и пароль: 
+ (**use Username= clientId and Password= secret**):
  
  get token with **admin rules**
  http://localhost:9001/oauth/token?username=admin&password=12345&grant_type=password
+ ![](docs/img/Example.bmp)
  
  or  get token with **teacher rules**
  http://localhost:9001/oauth/token?username=teacher&password=12345&grant_type=password
