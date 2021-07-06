@@ -13,7 +13,7 @@ c разными правами доступа к ресурсам, соглас
   
  2. Для получения токина используйте логин и пароль: (**use Username=clientId and Password=secret**):
  
- [](docs/img/Example.bmp)
+ ![](docs/img/Example.bmp)
  
  get token with **admin rules**
  http://localhost:9001/oauth/token?username=admin&password=12345&grant_type=password
