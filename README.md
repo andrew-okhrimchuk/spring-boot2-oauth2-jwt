@@ -30,7 +30,8 @@ c разными правами доступа к ресурсам, соглас
  
  5. use all
  
- 6. On refresh token use http://localhost:9001/oauth/token?refresh_token=(set refresh_token)&grant_type=refresh_token
+ 6. On refresh token use 
+ http://localhost:9001/oauth/token?refresh_token=(setRefresh_token)&grant_type=refresh_token
  
  
  
