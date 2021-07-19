@@ -1,5 +1,6 @@
 package top.okhrimchuk.decompose.service;
 
+import org.springframework.dao.EmptyResultDataAccessException;
 import top.okhrimchuk.decompose.DataJPA.StudentsJPARepository;
 import top.okhrimchuk.decompose.exeption.DaoExeption;
 import top.okhrimchuk.decompose.model.Student;
@@ -28,7 +29,6 @@ public class StudentService implements StudentsService {
     private final Validator validator;
 
     @Override
-    @Secured("ROLE_ADMIN")
     public Student add(String firstName, String lastName, String contract, String description) throws ServiceExeption {
         log.debug("Start add. firstName = {}, lastName = {} ,contract ={}", firstName, lastName, contract);
         try {
@@ -42,7 +42,6 @@ public class StudentService implements StudentsService {
     }
 
     @Override
-    @Secured("ROLE_ADMIN")
     public Student add(Student student) throws ServiceExeption {
         log.debug("Start add. student ={}", student);
         try {
@@ -78,27 +77,28 @@ public class StudentService implements StudentsService {
     }
 
     @Override
-    @Secured ({"ROLE_ADMIN", "ROLE_TEACHER"})
     public Student update(Student studentNew) throws ServiceExeption {
         log.debug("Start update. studentNew={}", studentNew);
         try {
             validator.isValid(studentNew.getFirstName());
             validator.isValid(studentNew.getLastName());
-
+            Student student = repository.findById(studentNew.getId());
+            if (student == null) {
+                return null;
+            }
             return repository.save(studentNew);
-        } catch (DaoExeption e) {
+        } catch (DaoExeption | EmptyResultDataAccessException e) {
             log.error("{}, {}", env.getProperty("UPDATE_ERROR_MESSAGE_STUDENT"), e.getMessage());
             throw new ServiceExeption(e.getMessage(), e);
         }
     }
 
     @Override
-    @Secured ({"ROLE_ADMIN", "ROLE_TEACHER"})
     public void delete(int id) throws ServiceExeption {
         log.debug("Start delete. id ={}", id);
         try {
             repository.deleteById(id);
-        } catch (DaoExeption e) {
+        } catch (DaoExeption | EmptyResultDataAccessException e) {
             log.error("{}, {}", env.getProperty("DELETE_ERROR_MESSAGE_STUDENT"), e.getMessage());
             throw new ServiceExeption(e.getMessage(), e);
         }
@@ -113,10 +113,9 @@ public class StudentService implements StudentsService {
         int total = 0;
         try {
             list = getAll();
-            if (list !=null ) {
+            if (list != null) {
                 total = list.size();
-            }
-            else list = Collections.emptyList();
+            } else list = Collections.emptyList();
         } catch (ServiceExeption serviceExeption) {
             serviceExeption.printStackTrace();
             list = Collections.emptyList();

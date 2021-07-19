@@ -1,5 +1,6 @@
 package top.okhrimchuk.decompose.web;
 
+import org.springframework.security.access.annotation.Secured;
 import top.okhrimchuk.decompose.model.Student;
 import top.okhrimchuk.decompose.service.StudentService;
 import top.okhrimchuk.decompose.service.exeption.ServiceExeption;
@@ -27,7 +28,7 @@ public class StudentControllerApi  {
         this.service = service;
     }
 
-    @ResponseBody
+    @Secured ({"ROLE_ADMIN", "ROLE_TEACHER", "ROLE_STUDENT"})
     @ApiOperation(value = "getAll Student rules for teacher, student and admin", response = Student.class, responseContainer = "List")
     @GetMapping(value = {"/student"}, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity getAll() {
@@ -46,7 +47,7 @@ public class StudentControllerApi  {
         }
     }
 
-    @ResponseBody
+    @Secured("ROLE_ADMIN")
     @ApiOperation(value = "add Student rules for admin", response = Student.class)
     @PutMapping(value = "/student/add")
     public ResponseEntity add(@RequestBody Student student) {
@@ -60,7 +61,7 @@ public class StudentControllerApi  {
         }
     }
 
-    @ResponseBody
+    @Secured ({"ROLE_ADMIN", "ROLE_TEACHER"})
     @ApiOperation(value = "update Student, rules for teacher and admin", response = Student.class)
     @PostMapping(value = {"/student/edit"})
     public ResponseEntity update(@RequestBody Student student) {
@@ -74,11 +75,11 @@ public class StudentControllerApi  {
         } catch (ServiceExeption ex) {
             String errorMessage = ex.getMessage();
             log.error(errorMessage);
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
-    @ResponseBody
+    @Secured ({"ROLE_ADMIN", "ROLE_TEACHER"})
     @ApiOperation(value = "deleteById Student,  rules for  admin")
     @DeleteMapping(value = {"/student/delete/{id}"})
     public ResponseEntity deleteById(
@@ -90,12 +91,12 @@ public class StudentControllerApi  {
         } catch (ServiceExeption ex) {
             String errorMessage = ex.getMessage();
             log.error(errorMessage);
-            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    @ResponseBody
+    @Secured ({"ROLE_ADMIN", "ROLE_TEACHER", "ROLE_STUDENT"})
     @ApiOperation(value = "getById Student, rules for student, teacher and admin")
     @GetMapping(value = {"/student/{id}"}, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity getById(
