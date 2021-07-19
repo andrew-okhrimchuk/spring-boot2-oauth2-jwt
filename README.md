@@ -24,9 +24,9 @@ c разными правами доступа к ресурсам, соглас
  or get token with **student rules**
  http://localhost:9001/oauth/token?username=student&password=12345&grant_type=password
  
- 3. Open brouser on page  http://localhost:9001/swagger-ui/index.html?url=/v3/api-docs&validatorUrl=
+ 3. Open brouser on page  http://localhost:9002/swagger-ui/index.html?url=/v3/api-docs&validatorUrl=
  or
- 3.1 Open brouser on page  http://localhost:9001/swagger-ui/index.html?url=/v3/api-docs&validatorUrl=
+ 3.1 Open brouser on page  http://localhost:9002/swagger-ui/index.html?url=/v3/api-docs&validatorUrl=
  
  4. autorithet with "Bearer .....
  
